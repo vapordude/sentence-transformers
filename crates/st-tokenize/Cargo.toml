@@ -1,0 +1,8 @@
+[package]
+name = "st-tokenize"
+version = "0.1.0"
+edition = "2021"
+description = "Tokenization foundation in Rust for sentence-transformers."
+
+[dependencies]
+# Assume st-telemetry exists in the workspace, though we mock it.
