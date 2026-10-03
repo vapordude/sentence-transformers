@@ -19,6 +19,7 @@ impl Drop for SpanGuard {
     fn drop(&mut self) {}
 }
 
+#[allow(unused_macros)]
 #[macro_export]
 macro_rules! info_span {
     ($name:expr) => {

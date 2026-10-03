@@ -1,6 +1,17 @@
 use crate::colbert::colbert_maxsim_score;
 use crate::similarity::pairwise_token_similarity;
 
+fn assert_f32_eq(a: f32, b: f32) {
+    assert!((a - b).abs() < 1e-6, "{} != {}", a, b);
+}
+
+fn assert_f32_vec_eq(a: &[f32], b: &[f32]) {
+    assert_eq!(a.len(), b.len());
+    for (x, y) in a.iter().zip(b.iter()) {
+        assert_f32_eq(*x, *y);
+    }
+}
+
 #[test]
 fn test_pairwise_token_similarity() {
     println!("ST-EVIDENCE id=pairwise_sim exactness");
@@ -16,7 +27,7 @@ fn test_pairwise_token_similarity() {
         3.0 * 0.0 + 4.0 * 1.0,  // q1, d2 = 4.0
     ];
     let result = pairwise_token_similarity(&query_embeddings, &doc_embeddings, dim);
-    assert_eq!(result, expected);
+    assert_f32_vec_eq(&result, &expected);
 }
 
 #[test]
@@ -44,11 +55,11 @@ fn test_colbert_maxsim_score() {
     // total = 3.0 + 7.0 = 10.0
     let result_unnorm =
         colbert_maxsim_score(&query_embeddings, &doc_embeddings, dim, None, None, false);
-    assert_eq!(result_unnorm, 10.0);
+    assert_f32_eq(result_unnorm, 10.0);
 
     let result_norm =
         colbert_maxsim_score(&query_embeddings, &doc_embeddings, dim, None, None, true);
-    assert_eq!(result_norm, 10.0 / 2.0); // 5.0
+    assert_f32_eq(result_norm, 10.0 / 2.0); // 5.0
 }
 
 #[test]
@@ -83,7 +94,7 @@ fn test_colbert_maxsim_score_with_mask() {
         Some(&doc_mask),
         false,
     );
-    assert_eq!(result_unnorm, 10.0);
+    assert_f32_eq(result_unnorm, 10.0);
 
     let result_norm = colbert_maxsim_score(
         &query_embeddings,
@@ -94,7 +105,7 @@ fn test_colbert_maxsim_score_with_mask() {
         true,
     );
     // 2 valid query tokens
-    assert_eq!(result_norm, 10.0 / 2.0);
+    assert_f32_eq(result_norm, 10.0 / 2.0);
 }
 
 #[test]

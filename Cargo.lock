@@ -27,6 +27,10 @@ name = "st-models"
 version = "0.1.0"
 
 [[package]]
+name = "st-multi-vector"
+version = "0.1.0"
+
+[[package]]
 name = "st-sparse"
 version = "0.1.0"
 
