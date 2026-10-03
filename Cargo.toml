@@ -4,7 +4,7 @@ members = [
     "crates/st-dataset",
     "crates/st-eval",
     "crates/st-loss",
-    "crates/st-models", "crates/st-multi-vector", "crates/st-sparse",
+    "crates/st-models", "crates/st-multi-vector", "crates/st-search", "crates/st-sparse",
     "crates/st-tokenize",
 ]
 resolver = "2"
