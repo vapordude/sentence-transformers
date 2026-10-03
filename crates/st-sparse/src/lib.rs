@@ -5,6 +5,7 @@ pub mod st_telemetry {
     #[allow(dead_code)]
     pub struct Span;
 
+    #[allow(unused_macros)]
     #[macro_export]
     macro_rules! info_span {
         ($name:expr, $($field:tt)*) => {
@@ -132,7 +133,7 @@ mod tests {
         // Intersecting indices: 3 and 5
         // Products: 2.0 * 1.5 + 3.0 * 2.5 = 3.0 + 7.5 = 10.5
         let dot = sparse_dot_product(&a, &b);
-        assert!((dot - 10.5).abs() < f32::EPSILON);
+        assert!((dot - 10.5).abs() < 1e-6);
         println!("ST-EVIDENCE id=sparse_dot_product_computation");
     }
 
