@@ -72,3 +72,4 @@ tmp
 # Keep agents ignored
 .claude/
 .agents/
+/crates/*/target
