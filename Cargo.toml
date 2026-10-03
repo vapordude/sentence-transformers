@@ -1,6 +1,6 @@
 [workspace]
 members = [
-    "crates/st-core",
+    "crates/st-core", "crates/st-cross-encoder",
     "crates/st-dataset",
     "crates/st-eval",
     "crates/st-loss",

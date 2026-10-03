@@ -7,6 +7,10 @@ name = "st-core"
 version = "0.1.0"
 
 [[package]]
+name = "st-cross-encoder"
+version = "0.1.0"
+
+[[package]]
 name = "st-dataset"
 version = "0.1.0"
 
