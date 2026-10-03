@@ -27,5 +27,9 @@ name = "st-models"
 version = "0.1.0"
 
 [[package]]
+name = "st-sparse"
+version = "0.1.0"
+
+[[package]]
 name = "st-tokenize"
 version = "0.1.0"
