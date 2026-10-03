@@ -89,4 +89,13 @@ mod tests {
             "ST-EVIDENCE id=st-cross-encoder-logit-score checked=2 exact=true paths=logit_score"
         );
     }
+
+    #[test]
+    fn test_logit_score_invalid_input() {
+        let scorer = LogitScore::new(1, None);
+        let result = std::panic::catch_unwind(|| {
+            scorer.forward_batched(&[0.1, 0.9, 0.0, 0.2], 3); // Length 4 not multiple of 3
+        });
+        assert!(result.is_err());
+    }
 }

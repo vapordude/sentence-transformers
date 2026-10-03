@@ -151,4 +151,22 @@ mod tests {
         assert_eq!(output, vec![2.5, 3.5, 1.5, -1.5]);
         println!("ST-EVIDENCE id=st-cross-encoder-heads checked=2 exact=true paths=heads");
     }
+
+    #[test]
+    fn test_regression_head_invalid_input() {
+        let head = RegressionHead::new(2, vec![0.5, -0.5], None);
+        let result = std::panic::catch_unwind(|| {
+            head.forward_batched(&[1.0, 2.0, 3.0]); // Not a multiple of 2
+        });
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_classification_head_invalid_input() {
+        let head = ClassificationHead::new(2, 2, vec![1.0, 0.0, 0.0, 1.0], None);
+        let result = std::panic::catch_unwind(|| {
+            head.forward_batched(&[1.0, 2.0, 3.0]); // Not a multiple of 2
+        });
+        assert!(result.is_err());
+    }
 }

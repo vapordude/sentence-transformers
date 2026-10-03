@@ -4,6 +4,7 @@
 //! ST-EVIDENCE id=st-cross-encoder-heads checked=2 exact=true paths=heads
 //! ST-EVIDENCE id=st-cross-encoder-logit-score checked=2 exact=true paths=logit_score
 
+#[allow(dead_code)]
 pub mod st_telemetry {
     pub struct Span;
     impl Span {
@@ -17,6 +18,7 @@ pub mod st_telemetry {
 }
 
 #[macro_export]
+#[allow(unused_macros)]
 macro_rules! info_span {
     ($name:expr, elements = $el:expr, fallback = $fb:expr) => {
         $crate::st_telemetry::Span::new($name, $el, $fb)
